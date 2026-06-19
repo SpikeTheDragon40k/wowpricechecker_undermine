@@ -30,12 +30,12 @@ def send_deal_alert(
     wowhead_url = f"https://www.wowhead.com/item={item_id}"
 
     lines = [
-        f"Affare su {realm}!",
+        f"Deal on {realm}!",
         f"<a href='{wowhead_url}'>{item_name}</a> (ID {item_id})",
-        f"Prezzo: {price_str}",
-        f"Mediana EU: {median_str}",
-        f"Sconto: {discount:.1f}% ({pct_of_median:.1f}% della mediana)",
-        f"Quantità: {quantity}",
+        f"Price: {price_str}",
+        f"Regional median: {median_str}",
+        f"Discount: {discount:.1f}% ({pct_of_median:.1f}% of median)",
+        f"Quantity: {quantity}",
     ]
 
     text = "\n".join(lines)
