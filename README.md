@@ -17,12 +17,12 @@ Every 8 hours (via systemd timer), the bot:
 ### Example alert
 
 ```
-Affare su pozzo-delleternità!
+Deal on pozzo-delleternità!
 Schematic: Small Seaforium Charge (ID 4409)
-Prezzo: 10g 4s 0c
-Mediana EU: 500g 0s 0c
-Sconto: 97.9% (2.1% della mediana)
-Quantità: 1
+Price: 10g 4s 0c
+Regional median: 500g 0s 0c
+Discount: 97.9% (2.1% of median)
+Quantity: 1
 ```
 
 ## Requirements
