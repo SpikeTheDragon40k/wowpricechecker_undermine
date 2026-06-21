@@ -1,0 +1,11 @@
+[Unit]
+Description=Underbot — API credit check
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /home/spike/underbot/credits_checker.py
+WorkingDirectory=/home/spike/underbot
+User=spike
+EnvironmentFile=/home/spike/underbot/.env

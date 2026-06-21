@@ -12,6 +12,16 @@ def copper_to_gold_string(copper: int) -> str:
     return f"{gold}g {silver}s {c}c"
 
 
+def send_message(bot_token: str, chat_id: str, text: str) -> None:
+    url = API_URL.format(token=bot_token)
+    resp = requests.post(
+        url,
+        json={"chat_id": chat_id, "text": text, "parse_mode": "HTML"},
+        timeout=15,
+    )
+    resp.raise_for_status()
+
+
 def send_deal_alert(
     bot_token: str,
     chat_id: str,
@@ -40,10 +50,4 @@ def send_deal_alert(
 
     text = "\n".join(lines)
 
-    url = API_URL.format(token=bot_token)
-    resp = requests.post(
-        url,
-        json={"chat_id": chat_id, "text": text, "parse_mode": "HTML"},
-        timeout=15,
-    )
-    resp.raise_for_status()
+    send_message(bot_token, chat_id, text)

@@ -56,6 +56,13 @@ class UndermineClient:
         data = self._get(REALMS_URL)
         return data.get("result", {}).get("realms", [])
 
+    def check_credits(self) -> tuple[int, int]:
+        resp = self.session.get(REALMS_URL, timeout=30)
+        resp.raise_for_status()
+        remaining = int(resp.headers.get("ratelimit-remaining", 0))
+        limit = int(resp.headers.get("ratelimit-limit", 0))
+        return remaining, limit
+
     def get_item_now(
         self, region: str, item_id: int
     ) -> list[dict[str, Any]]:

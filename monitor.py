@@ -7,7 +7,7 @@ from typing import Any
 from config import Config
 from state import State
 from undermine import UndermineClient
-from telegram_notifier import send_deal_alert, copper_to_gold_string
+from telegram_notifier import send_deal_alert, send_message, copper_to_gold_string
 
 ALERTED_DEALS_KEY = "alerted_deals"
 
@@ -134,6 +134,7 @@ def main() -> None:
                 )
 
     # 5. Send alerts and update state
+    new_deals = 0
     for deal in deals:
         item_id = deal["item_id"]
         str_id = str(item_id)
@@ -161,11 +162,22 @@ def main() -> None:
             "price": deal["price"],
             "last_alerted": deal.get("lastSeen", ""),
         }
+        new_deals += 1
 
     state.set(ALERTED_DEALS_KEY, alerted_deals)
     state.save()
 
-    print("Done.")
+    # 6. Send summary with remaining credits
+    try:
+        remaining, limit = undermine.check_credits()
+        summary = (
+            f"Scan complete — {new_deals} new deal{'s' if new_deals != 1 else ''} found\n"
+            f"⚡ API Credits: {remaining} / {limit} remaining"
+        )
+        print(summary)
+        send_message(cfg.telegram_bot_token, cfg.telegram_chat_id, summary)
+    except RuntimeError as e:
+        print(f"WARNING: could not check credits: {e}", file=sys.stderr)
 
 
 if __name__ == "__main__":
