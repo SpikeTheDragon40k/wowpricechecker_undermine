@@ -1,5 +1,5 @@
 [Unit]
-Description=Run underbot every 8 hours
+Description=Run underbot deal scan every 8 hours
 
 [Timer]
 OnCalendar=*-*-* 00,08,16:00:00

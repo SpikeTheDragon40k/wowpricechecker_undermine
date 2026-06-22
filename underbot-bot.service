@@ -1,0 +1,16 @@
+[Unit]
+Description=Underbot — interactive Telegram bot daemon
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/spike/underbot/bot.py
+WorkingDirectory=/home/spike/underbot
+User=spike
+Restart=on-failure
+RestartSec=10
+EnvironmentFile=/home/spike/underbot/.env
+
+[Install]
+WantedBy=multi-user.target

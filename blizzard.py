@@ -50,4 +50,6 @@ class BlizzardClient:
             "name": data.get("name"),
             "class_id": cls.get("id"),
             "class_name": cls.get("name"),
+            "sell_price": data.get("sell_price"),
+            "purchase_price": data.get("purchase_price"),
         }

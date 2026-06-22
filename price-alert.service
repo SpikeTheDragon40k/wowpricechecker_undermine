@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/python3 /home/spike/underbot/monitor.py
-WorkingDirectory=/home/spike/underbot
+ExecStart=/usr/bin/python3 /home/spike/github-release-telegramundermine/monitor.py
+WorkingDirectory=/home/spike/github-release-telegramundermine
 User=spike
-EnvironmentFile=/home/spike/underbot/.env
+EnvironmentFile=/home/spike/github-release-telegramundermine/.env
